@@ -60,21 +60,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void calculate() {
     auction = double.parse(auctionamount.text);
-    if (auctionamount.text.isEmpty ||
-        total <= 0 ||
-        auction <= 0 ||
-        mem <= 0) {
+    if (auctionamount.text.isEmpty || total <= 0 || auction <= 0 || mem <= 0) {
       return;
     }
-    
+
     double i = auction - bit1;
     print(i);
     double i2 = i / mem;
     setState(() {
       pay = ((total / mem) - i2).toInt();
     });
-    
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -258,12 +255,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Row(
-                                  child: Container(
-                    child: Text(
-              'Total Amount:  ${total.round()}\nAuction:   ${auction.round()}\nMembers:  ${mem.round()}\n''${pay.round()}',
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        'Total Amount:  ${total.round()}\nAuction:   ${auction.round()}\nMembers:  ${mem.round()}\n'
+                        '${pay.round()}',
+                      ),
                     ),
-                  
-                  ),
+                  ],
                 ),
               ],
             ),

@@ -29,52 +29,245 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<int> total_amount = [100000, 50000, 200000, 300000, 20000];
+  final List<int> total_amount = [
+    100000,
+    50000,
+    200000,
+    300000,
+    20000,
+  ];
+  final List<int> members = [
+    20,
+    10,
+  ];
+  final List<int> bit = [
+    3000,
+    1500,
+    6000,
+    600,
+    9000,
+  ];
+  double total = 100000;
+  double auction = 0;
+  double mem = 20;
+  int pay = 0;
+  double bit1 = 3000;
 
-  String totalAmount;
+  String totalAmount = "100000";
+  String membersS = "20";
+  String bitS = "3000";
+  final auctionamount = TextEditingController();
 
+  void calculate() {
+    auction = double.parse(auctionamount.text);
+    if (auctionamount.text.isEmpty ||
+        total <= 0 ||
+        auction <= 0 ||
+        mem <= 0) {
+      return;
+    }
+    
+    double i = auction - bit1;
+    print(i);
+    double i2 = i / mem;
+    setState(() {
+      pay = ((total / mem) - i2).toInt();
+    });
+    
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Card(
+        child: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Amount',
-                  style: TextStyle(fontSize: 30, fontFamily: 'Calibri'),
-                ),
-                DropdownButton(
-                  elevation: 5,
-                  value: totalAmount,
-                  icon: Icon(
-                    Icons.arrow_drop_down,
-                  ),
-                  style: TextStyle(color: Colors.blue,fontSize: 22),
-                  items:
-                      total_amount.map<DropdownMenuItem<String>>((int index) {
-                    return DropdownMenuItem(
-                      value: index.toString(),
-                      child: Text(
-                        index.toString(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Amount',
+                      style: TextStyle(fontSize: 30, fontFamily: 'Calibri'),
+                    ),
+                    DropdownButton(
+                      elevation: 5,
+                      value: totalAmount,
+                      icon: Icon(
+                        Icons.arrow_drop_down,
                       ),
-                    );
-                  }).toList(),
-                  onChanged: (String value) {
-                    setState(() {
-                      totalAmount = value;
-                    });
-                  },
+                      style: TextStyle(color: Colors.blue, fontSize: 22),
+                      items: total_amount
+                          .map<DropdownMenuItem<String>>((int index) {
+                        return DropdownMenuItem(
+                          value: index.toString(),
+                          child: Text(
+                            index.toString(),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String value) {
+                        setState(() {
+                          totalAmount = value;
+                          switch (totalAmount) {
+                            case "100000":
+                              bit1 = bit[0].toDouble();
+                              bitS = bit[0].toString();
+                              total = total_amount[0].toDouble();
+                              break;
+                            case "50000":
+                              bit1 = bit[1].toDouble();
+                              bitS = bit[1].toString();
+                              total = total_amount[1].toDouble();
+                              break;
+                            case "200000":
+                              bit1 = bit[2].toDouble();
+                              bitS = bit[2].toString();
+                              total = total_amount[2].toDouble();
+                              break;
+                            case "300000":
+                              bit1 = bit[4].toDouble();
+                              bitS = bit[4].toString();
+                              total = total_amount[3].toDouble();
+                              break;
+                            case "20000":
+                              bit1 = bit[3].toDouble();
+                              bitS = bit[3].toString();
+                              total = total_amount[4].toDouble();
+                              break;
+                          }
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Members',
+                      style: TextStyle(fontSize: 30, fontFamily: 'Calibri'),
+                    ),
+                    DropdownButton(
+                      elevation: 5,
+                      value: membersS,
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                      ),
+                      style: TextStyle(color: Colors.blue, fontSize: 22),
+                      items: members.map<DropdownMenuItem<String>>((int index) {
+                        return DropdownMenuItem(
+                          value: index.toString(),
+                          child: Text(
+                            index.toString(),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String value) {
+                        setState(() {
+                          membersS = value;
+                          mem = double.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Bit',
+                      style: TextStyle(fontSize: 30, fontFamily: 'Calibri'),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Card(
+                        elevation: 3,
+                        child: Text(
+                          bitS,
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'Calibri',
+                              color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Auction',
+                      style: TextStyle(fontSize: 30, fontFamily: 'Calibri'),
+                    ),
+                    Card(
+                      child: Container(
+                        width: 150,
+                        child: TextField(
+                          controller: auctionamount,
+                          decoration: InputDecoration(
+                            labelText: 'Auction amount',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        color: Colors.red,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child: FlatButton(
+                          onPressed: null,
+                          child: Text(
+                            'Clear',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          color: Colors.red,
+                        ),
+                      ),
+                      Container(
+                        color: Colors.green,
+                        child: FlatButton(
+                          onPressed: calculate,
+                          child: Text(
+                            'Calculate',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                                  child: Container(
+                    child: Text(
+              'Total Amount:  ${total.round()}\nAuction:   ${auction.round()}\nMembers:  ${mem.round()}\n''${pay.round()}',
+                    ),
+                  
+                  ),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

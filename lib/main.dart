@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,16 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
   double total = 100000;
   double auction = 0;
   double mem = 20;
-  final List<int> _pay = [
-    0,
-  ];
+  int _pay;
   double bit1 = 3000;
 
   String totalAmount = "100000";
   String membersS = "20";
   String bitS = "3000";
   final auctionamount = TextEditingController();
-  final String finalpay = "t";
+  String finalpay;
 
   void _calculate() {
     auction = double.parse(auctionamount.text);
@@ -70,8 +70,21 @@ class _MyHomePageState extends State<MyHomePage> {
     double i = auction - bit1;
     print(i);
     double i2 = i / mem;
-    _pay.add(((total / mem) - i2).toInt());
     setState(() {});
+    finalpay = "Total Amount:\t" +
+        totalAmount +
+        "\n" +
+        "Members: \t\t\t\t\t\t\t\t" +
+        membersS +
+        "\n" +
+        "Bit: \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+        bitS +
+        "\n" +
+        "Auction :\t\t\t\t\t\t\t\t\t\t\t" +
+        auction.round().toString() +
+        "\n\n" +
+        "Pay: \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+        ((total / mem) - i2).round().toString();
   }
 
   @override
@@ -208,6 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         width: 150,
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: auctionamount,
                           decoration: InputDecoration(
                             labelText: 'Auction amount',
@@ -250,22 +264,34 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          color: Colors.red,
                         ),
                       ),
                     ],
                   ),
                 ),
                 finalpay == null
-                    ? SizedBox(height: 10)
-                    : Row(
-                        children: <Widget>[
-                          Container(
-                            child: Text(
-                              _pay.elementAt(_pay.length - 1).toString(),
-                            ),
+                    ? SizedBox(
+                        child: Icon(Icons.hourglass_empty),
+                      )
+                    : Card(
+                        elevation: 6,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                'Report',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                              Text(
+                                finalpay,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
               ],
             ),

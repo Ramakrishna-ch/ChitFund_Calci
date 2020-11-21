@@ -50,15 +50,18 @@ class _MyHomePageState extends State<MyHomePage> {
   double total = 100000;
   double auction = 0;
   double mem = 20;
-  int pay = 0;
+  final List<int> _pay = [
+    0,
+  ];
   double bit1 = 3000;
 
   String totalAmount = "100000";
   String membersS = "20";
   String bitS = "3000";
   final auctionamount = TextEditingController();
+  final String finalpay = "t";
 
-  void calculate() {
+  void _calculate() {
     auction = double.parse(auctionamount.text);
     if (auctionamount.text.isEmpty || total <= 0 || auction <= 0 || mem <= 0) {
       return;
@@ -67,9 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
     double i = auction - bit1;
     print(i);
     double i2 = i / mem;
-    setState(() {
-      pay = ((total / mem) - i2).toInt();
-    });
+    _pay.add(((total / mem) - i2).toInt());
+    setState(() {});
   }
 
   @override
@@ -239,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(
                         color: Colors.green,
                         child: FlatButton(
-                          onPressed: calculate,
+                          onPressed: _calculate,
                           child: Text(
                             'Calculate',
                             style: TextStyle(
@@ -254,16 +256,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        'Total Amount:  ${total.round()}\nAuction:   ${auction.round()}\nMembers:  ${mem.round()}\n'
-                        '${pay.round()}',
+                finalpay == null
+                    ? SizedBox(height: 10)
+                    : Row(
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              _pay.elementAt(_pay.length - 1).toString(),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),

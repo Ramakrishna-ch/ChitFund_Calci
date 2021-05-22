@@ -4,12 +4,13 @@
 
 ## Screenshot
 <img src ="assets/Screenshot_20210521-123813.png" height = "350" width = "180"/>
-This project used for calculating Chit payable amount based on attributes such as auction, total months, commision, total amount
 
-Users can select the above attributes through dropdown menus but the auction amount should be given through text box
+*This project used for calculating Chit payable amount based on attributes such<br> as auction, total months, commision, total amount.
 
-after giving all inputs, the calculate button should be pressed to get the final payable amount in the details report format
+*Users can select the above attributes through dropdown menus but the auction amount <br>should be given through text box
+
+*after giving all inputs, the calculate button should be pressed to get the final <br>payable amount in the details report format
 
 if you like the code and logic created for calculation Hit Like :thumbsup: 
 
-Copyrights reserved @ Ramakrishna-ch 2021.
+>Copyrights reserved @ <Ramakrishna-ch 2021>

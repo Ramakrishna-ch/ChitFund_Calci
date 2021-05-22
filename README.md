@@ -1,6 +1,6 @@
 # ChitFund_Calci
 
-A Calculator for Chit Funds Amount calculation
+>A Calculator for Chit Funds Amount calculation
 
 ## Screenshot
 <img src ="assets/Screenshot_20210521-123813.png" height = "350" width = "180"/>

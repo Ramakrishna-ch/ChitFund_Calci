@@ -1,16 +1,15 @@
 # ChitFund_Calci
 
-A new Flutter project.
+A Calculator for Chit Funds Amount calculation
 
-## Getting Started
+## Screenshot
 <img src ="assets/Screenshot_20210521-123813.png" height = "350" width = "180"/>
-This project is a starting point for a Flutter application.
+This project used for calculating Chit payable amount based on attributes such as auction, total months, commision, total amount
 
-A few resources to get you started if this is your first Flutter project:
+Users can select the above attributes through dropdown menus but the auction amount should be given through text box
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+after giving all inputs, the calculate button should be pressed to get the final payable amount in the details report format
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+if you like the code and logic created for calculation Hit Like :thumbsup: 
+
+Copyrights reserved @ Ramakrishna-ch 2021.
